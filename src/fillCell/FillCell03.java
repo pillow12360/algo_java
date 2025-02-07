@@ -17,8 +17,31 @@ public class FillCell03 {
 		int[][] map = new int[N][N];
 		int r = sc.nextInt();
 		int c = sc.nextInt();
-		////////////////
-		/// 처리 코드 작성
 
+		int[] dr = {-1, 1, 0, 0};
+		int[] dc = {0, 0, -1, 1};
+
+		int nr;
+		int nc;
+
+		for (int i = 0; i < 4; i++) {
+			nr = r + dr[i];
+			nc = c + dc[i];
+
+			if (is_range(nr, nc, map)) {
+				map[nr][nc] = 1;
+			};
+		}
+
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				System.out.print(map[i][j]);
+			}
+			System.out.println();
+		}
 	}
+
+	public static boolean is_range(int r, int c, int[][] map) {
+		return r >= 0 && r < map.length && c >= 0 && c < map[0].length;
+    }
 }
