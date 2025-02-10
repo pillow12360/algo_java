@@ -1,11 +1,15 @@
 package fillCell;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * 가로, 세로의 길이가 N인 N x N 정사각 행렬이 있다. 
- * 이 행렬의 각각의 값으로서 0에서 9 사이의 수가 무작위로 넣어진다고 하자. 
+// * 이 행렬의 각각의 값으로서 0에서 9 사이의 수가 무작위로 넣어진다고 하자.
  * 이 때 그 행렬 내에서 주위를 둘러싸고 있는 다른 모든 수들 보다 
  * 큰 수와 작은 수가 각각 몇 개인지를 구하는 프로그램을 작성하여라
  * 
@@ -31,6 +35,9 @@ import java.util.Scanner;
  */
 public class RandomNumberPattern {
 	static int N, Answer1, Answer2;
+	static int[] dr = {-1,-1,-1,0,1,1,1,0};
+	static int[] dc = {-1,0,1,1,1,0,-1,-1};
+
 	public static void main(String[] args) throws FileNotFoundException {
 		System.setIn(new FileInputStream("res/RandomNumberPattern.txt"));
 		Scanner sc = new Scanner(System.in);
@@ -45,6 +52,34 @@ public class RandomNumberPattern {
 			}
 			Answer1 = 0;
 			Answer2 = 0;
+
+			// 행 1 부터 N-2 까지
+			// 열 1 부터 N-2 까지 탐색
+
+			// 탐색하며 주의 수 의 최소값과 최대값을 각각 구한 후
+			// 주의 수를 구하는 방법
+
+
+			// 최소값보다 작으면 answer1++ continue 최댓값 보다 크면 answer2++
+			for(int i = 1; i<N-1; i++){
+				for (int j = 1; j<N-1; j++) {
+					List<Integer> numbers = new ArrayList<>();
+
+					for (int k = 0; k<8; k++) {
+							numbers.add(matrix[i+dr[k]][j+dc[k]]);
+						}
+
+					int maxVal = Collections.max(numbers);
+					int minVal = Collections.min(numbers);
+
+					if (matrix[i][j] > maxVal){
+						Answer1++;
+					}else if ( matrix[i][j] < minVal) {
+						Answer2++;
+					}
+				}
+			}
+
 			System.out.println("#"+test_case+" "+Answer1+" "+Answer2);
 		}
 	}

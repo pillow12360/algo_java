@@ -61,6 +61,7 @@ public class BaseStation1 {
 					}
 			}
 
+			// 남은 집 개수 구하기
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
 					if(arr[i][j].equals("H")) {
@@ -68,9 +69,6 @@ public class BaseStation1 {
 					}
 				}
 			}
-
-			// 남은 H 개수 세기
-
 
 			System.out.println("#" + test_case + " 결과값 : "+answer); // 실제 문제의 계산 로직 추가 필요
 		}
@@ -80,5 +78,4 @@ public class BaseStation1 {
 	public static boolean is_range(int r, int c, int n) {
 		return (0<=r && r<n ) && ( 0<=c && c<n);
 	}
-
 }
