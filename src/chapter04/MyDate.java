@@ -17,7 +17,12 @@ import java.util.Calendar;
  * usage  modifier	: 클래스, 메서드, 속성의 기능을 제한한다.
  */
 public class MyDate {
-	
+    private int year;
+
+	public void setYear (int year) {
+        this.year = year;
+
+    }
 }
 
 
